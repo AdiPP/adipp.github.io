@@ -23,5 +23,30 @@ function main() {
 }
 
 function game(userChoice) {
-    console.log(userChoice);
+    const computerChoice = getComputerChoice();
+    switch (userChoice + computerChoice) {
+        case "rs":
+        case "pr":
+        case "sp":
+            console.log("Win");
+            break;
+        case "sr":
+        case "rp":
+        case "ps":
+            console.log("Lose");
+            break;
+        case "rr":
+        case "pp":
+        case "ss":
+            console.log("Draw");
+            break;
+        default:
+            break;
+    }
+}
+
+function getComputerChoice() {
+    const choices = ['r', 'p', 's'];
+    const randomNumber = Math.floor(Math.random() * 3);
+    return choices[randomNumber];
 }
