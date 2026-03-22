@@ -183,3 +183,47 @@
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }
+
+/* CV PDF Print Styles */
+.cv-document-hidden {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  width: 210mm;
+  min-height: 297mm;
+  z-index: -9999;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cv-template {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 15mm;
+  box-sizing: border-box;
+  background: white;
+}
+
+.cv-template * {
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* Page break utilities */
+.break-inside-avoid {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.break-after-page {
+  break-after: page;
+  page-break-after: page;
+}
+
+/* Print-specific styles */
+@media print {
+  .cv-template {
+    width: 100%;
+    padding: 10mm;
+  }
+}

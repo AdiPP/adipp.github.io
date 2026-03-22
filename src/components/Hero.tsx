@@ -1,4 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+// CV Download feature temporarily hidden
+// import CVButton from './cv/CVButton'
+// import CVTemplate from './cv/CVTemplate'
+// import { cvData } from '@/data/cv-data'
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -120,8 +124,15 @@ export default function Hero() {
           >
             View Experience
           </a>
+          {/* CV Download button hidden temporarily */}
+          {/* <CVButton variant="secondary" /> */}
         </div>
       </div>
+
+      {/* Hidden CV Document for PDF Generation - temporarily disabled */}
+      {/* <div id="cv-document" className="cv-document-hidden">
+        <CVTemplate data={cvData} />
+      </div> */}
     </section>
   )
 }
