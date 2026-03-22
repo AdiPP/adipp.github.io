@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Mail } from 'lucide-react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import FeaturedProjects from './components/FeaturedProjects'
 import About from './components/About'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
@@ -33,12 +35,26 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <FeaturedProjects />
         <About />
         <Experience />
         <Skills />
         <Contact />
       </main>
       <Footer />
+
+      {/* Floating CTA Button - Mobile Only */}
+      <a
+        href="#contact"
+        onClick={(e) => {
+          e.preventDefault()
+          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+        }}
+        className="fixed bottom-6 right-6 z-40 md:hidden w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center hover:opacity-90 active:scale-95 transition-all touch-target-lg"
+        aria-label="Get in touch"
+      >
+        <Mail className="w-6 h-6" />
+      </a>
     </div>
   )
 }

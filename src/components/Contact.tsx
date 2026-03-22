@@ -94,12 +94,12 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left Column - Contact Info */}
           <div
             className={cn(
               'space-y-6 transition-all duration-700 delay-100',
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             )}
           >
             <div>
@@ -120,10 +120,10 @@ export default function Contact() {
                   href={link.href}
                   target={link.name !== 'Email' ? '_blank' : undefined}
                   rel={link.name !== 'Email' ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-3 p-3 rounded border border-border bg-background hover:bg-secondary transition-colors group"
+                  className="flex items-center gap-3 p-4 min-h-[56px] rounded border border-border bg-background hover:bg-secondary active:bg-secondary/70 transition-colors group"
                 >
-                  <div className="w-8 h-8 rounded bg-secondary flex items-center justify-center shrink-0">
-                    <link.icon className="w-4 h-4 text-muted-foreground" />
+                  <div className="w-10 h-10 rounded bg-secondary flex items-center justify-center shrink-0">
+                    <link.icon className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-xs text-muted-foreground">{link.name}</div>
@@ -134,9 +134,9 @@ export default function Contact() {
             </div>
 
             {/* Location */}
-            <div className="flex items-center gap-3 p-3 rounded border border-border bg-background">
-              <div className="w-8 h-8 rounded bg-secondary flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-muted-foreground" />
+            <div className="flex items-center gap-3 p-4 min-h-[56px] rounded border border-border bg-background">
+              <div className="w-10 h-10 rounded bg-secondary flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-muted-foreground" />
               </div>
               <div>
                 <div className="text-xs text-muted-foreground">Location</div>
@@ -149,7 +149,7 @@ export default function Contact() {
           <div
             className={cn(
               'transition-all duration-700 delay-200',
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             )}
           >
             <div className="rounded border border-border bg-background p-6">
@@ -185,7 +185,7 @@ export default function Contact() {
                       }
                       required
                       className={cn(
-                        'w-full px-3 py-2 rounded bg-secondary/50 border border-border text-sm',
+                        'w-full px-3 py-3 rounded bg-secondary/50 border border-border text-base',
                         'text-foreground placeholder:text-muted-foreground/50',
                         'focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20',
                         'transition-colors'
@@ -235,7 +235,7 @@ export default function Contact() {
                       required
                       rows={4}
                       className={cn(
-                        'w-full px-3 py-2 rounded bg-secondary/50 border border-border text-sm',
+                        'w-full px-3 py-3 rounded bg-secondary/50 border border-border text-base',
                         'text-foreground placeholder:text-muted-foreground/50',
                         'focus:outline-none focus:border-foreground/30',
                         'transition-colors resize-none'

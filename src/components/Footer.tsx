@@ -35,9 +35,9 @@ export default function Footer() {
       <div className="absolute top-0 left-0 w-full h-px bg-border" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
           {/* Brand */}
-          <div className="space-y-3">
+          <div className="space-y-3 flex flex-col items-center md:items-start">
             <a
               href="#"
               onClick={(e) => {
@@ -58,14 +58,14 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h4 className="font-semibold text-foreground mb-3 text-sm">Quick Links</h4>
-            <ul className="space-y-1.5">
+            <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm md:text-xs text-muted-foreground hover:text-foreground transition-colors min-h-[44px] py-2 md:py-0 flex items-center justify-center md:justify-start w-full"
                   >
                     {link.name}
                   </button>
@@ -75,7 +75,7 @@ export default function Footer() {
           </div>
 
           {/* Connect */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h4 className="font-semibold text-foreground mb-3 text-sm">Connect</h4>
             <div className="flex gap-2">
               {socialLinks.map((link) => (
@@ -85,13 +85,13 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    'w-8 h-8 rounded flex items-center justify-center',
+                    'w-11 h-11 rounded flex items-center justify-center touch-target',
                     'bg-secondary text-muted-foreground hover:text-foreground',
-                    'transition-colors duration-200'
+                    'transition-colors duration-200 active:bg-secondary/70'
                   )}
                   aria-label={link.name}
                 >
-                  <link.icon className="w-3.5 h-3.5" />
+                  <link.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
@@ -109,9 +109,9 @@ export default function Footer() {
             <button
               onClick={scrollToTop}
               className={cn(
-                'flex items-center gap-1.5 px-3 py-1.5 rounded text-xs',
+                'flex items-center gap-1.5 px-4 py-2 min-h-[44px] rounded text-xs',
                 'text-muted-foreground hover:text-foreground hover:bg-secondary',
-                'transition-colors duration-200'
+                'transition-colors duration-200 touch-target'
               )}
             >
               Back to top

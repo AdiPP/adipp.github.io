@@ -1,10 +1,30 @@
-import { useEffect, useRef } from 'react'
-import { ArrowDown } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
 
   useEffect(() => {
+    // Check for touch device
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  useEffect(() => {
+    // Only enable parallax on non-touch devices without reduced motion preference
+    if (isTouchDevice || prefersReducedMotion) return
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return
       const { clientX, clientY } = e
@@ -21,11 +41,7 @@ export default function Hero() {
 
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
-  }
+  }, [isTouchDevice, prefersReducedMotion])
 
   return (
     <section
@@ -51,7 +67,7 @@ export default function Hero() {
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight animate-fade-in animate-delay-100">
+        <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight animate-fade-in animate-delay-100">
           <span className="block text-foreground">Hi, I'm</span>
           <span className="block text-primary mt-2">Adi Putra</span>
         </h1>
@@ -62,14 +78,14 @@ export default function Hero() {
         </p>
 
         {/* Description */}
-        <p className="max-w-xl mx-auto text-base text-muted-foreground/80 mb-10 leading-relaxed animate-fade-in animate-delay-300">
+        <p className="max-w-xl mx-auto text-sm sm:text-base text-muted-foreground/80 mb-10 leading-relaxed animate-fade-in animate-delay-300 px-4 sm:px-0">
           Backend specialist with 6+ years of experience building scalable systems,
           microservices, and fintech solutions. Passionate about clean architecture
           and leading high-performing teams.
         </p>
 
         {/* Tech Stack */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12 animate-fade-in animate-delay-400">
+        <div className="flex flex-wrap justify-center gap-2 mb-10 animate-fade-in animate-delay-400 px-4 sm:px-0">
           {['Go', 'Python', 'PHP', 'Event-Driven', 'Microservices', 'Fintech', 'ERP', 'Cloud-Native'].map((tech) => (
             <span
               key={tech}
@@ -81,15 +97,15 @@ export default function Hero() {
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in animate-delay-500">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto px-4 sm:px-0 animate-fade-in animate-delay-500">
           <a
             href="#contact"
             onClick={(e) => {
               e.preventDefault()
               document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
             }}
-            className="px-6 py-2.5 rounded text-sm font-medium bg-primary text-primary-foreground
-                       hover:opacity-90 transition-opacity duration-200"
+            className="w-full sm:w-auto px-6 py-3 min-h-[48px] rounded text-sm font-medium bg-primary text-primary-foreground
+                       hover:opacity-90 active:scale-[0.98] transition-all duration-200 flex items-center justify-center touch-target-lg"
           >
             Get in Touch
           </a>
@@ -99,23 +115,13 @@ export default function Hero() {
               e.preventDefault()
               document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })
             }}
-            className="px-6 py-2.5 rounded text-sm font-medium border border-border text-foreground
-                       hover:border-primary hover:text-primary transition-colors duration-200"
+            className="w-full sm:w-auto px-6 py-3 min-h-[48px] rounded text-sm font-medium border border-border text-foreground
+                       hover:border-primary hover:text-primary active:scale-[0.98] transition-all duration-200 flex items-center justify-center touch-target-lg"
           >
             View Experience
           </a>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <button
-        onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1
-                   text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-        aria-label="Scroll to about section"
-      >
-        <ArrowDown className="w-4 h-4 animate-bounce" />
-      </button>
     </section>
   )
 }

@@ -80,12 +80,12 @@ export default function About() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left Column - Content */}
           <div
             className={cn(
               'space-y-6 transition-all duration-700 delay-100',
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             )}
           >
             <div className="space-y-4">
@@ -109,19 +109,19 @@ export default function About() {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 gap-3 pt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
               {highlights.slice(0, 2).map((item, index) => (
                 <div
                   key={item.label}
                   className={cn(
-                    'p-4 rounded border border-border bg-secondary/30 transition-all duration-500',
+                    'p-5 min-h-[100px] rounded border border-border bg-secondary/30 transition-all duration-500',
                     'hover:bg-secondary group',
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   )}
                   style={{ transitionDelay: `${200 + index * 100}ms` }}
                 >
-                  <item.icon className="w-4 h-4 text-muted-foreground mb-2" />
-                  <div className="text-xl font-semibold text-foreground">{item.value}</div>
+                  <item.icon className="w-5 h-5 text-muted-foreground mb-3" />
+                  <div className="text-2xl font-bold text-foreground">{item.value}</div>
                   <div className="text-xs text-muted-foreground">{item.label}</div>
                 </div>
               ))}
@@ -132,7 +132,7 @@ export default function About() {
           <div
             className={cn(
               'space-y-4 transition-all duration-700 delay-200',
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             )}
           >
             {/* Code Block Style Card */}
@@ -143,7 +143,7 @@ export default function About() {
                 <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/30" />
                 <span className="ml-2 text-xs text-muted-foreground font-mono">about.json</span>
               </div>
-              <div className="p-4 font-mono text-xs">
+              <div className="p-4 font-mono text-[10px] sm:text-xs overflow-x-auto">
                 <pre className="text-muted-foreground">
                   <span className="text-foreground">{'{'}</span>
                   {'\n'}
@@ -178,19 +178,19 @@ export default function About() {
             </div>
 
             {/* Additional Highlights */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {highlights.slice(2, 4).map((item, index) => (
                 <div
                   key={item.label}
                   className={cn(
-                    'p-4 rounded border border-border bg-secondary/30 transition-all duration-500',
+                    'p-4 min-h-[80px] rounded border border-border bg-secondary/30 transition-all duration-500',
                     'hover:bg-secondary',
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   )}
                   style={{ transitionDelay: `${400 + index * 100}ms` }}
                 >
                   <item.icon className="w-4 h-4 text-muted-foreground mb-2" />
-                  <div className="text-sm font-medium text-foreground">{item.value}</div>
+                  <div className="text-sm font-semibold text-foreground">{item.value}</div>
                   <div className="text-xs text-muted-foreground">{item.description}</div>
                 </div>
               ))}

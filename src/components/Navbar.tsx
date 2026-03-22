@@ -116,13 +116,14 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-8 h-8 rounded flex items-center justify-center text-foreground hover:bg-secondary transition-colors"
+              className="md:hidden w-11 h-11 rounded flex items-center justify-center text-foreground hover:bg-secondary transition-colors touch-target"
               aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? (
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               ) : (
-                <Menu className="w-4 h-4" />
+                <Menu className="w-5 h-5" />
               )}
             </button>
           </div>
@@ -147,7 +148,7 @@ export default function Navbar() {
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
                 className={cn(
-                  'text-left py-2 px-3 rounded font-medium transition-colors text-sm',
+                  'text-left min-h-[44px] py-3 px-3 rounded font-medium transition-colors text-sm active:scale-[0.98]',
                   activeSection === link.href.slice(1)
                     ? 'bg-secondary text-foreground'
                     : 'text-foreground hover:bg-secondary'
@@ -157,17 +158,17 @@ export default function Navbar() {
               </button>
             ))}
             <div className="border-t border-border my-2" />
-            <div className="flex gap-1 px-3">
+            <div className="flex gap-2 px-3">
               {socialLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-all"
+                  className="w-11 h-11 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary transition-all touch-target"
                   aria-label={link.name}
                 >
-                  <link.icon className="w-4 h-4" />
+                  <link.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>

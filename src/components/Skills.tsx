@@ -151,12 +151,12 @@ export default function Skills() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
           {skillCategories.map((category, index) => (
             <div
               key={category.name}
               className={cn(
-                'rounded border border-border bg-secondary/20 p-5 transition-all duration-700',
+                'rounded border border-border bg-secondary/20 p-5 min-w-0 transition-all duration-700',
                 'hover:border-foreground/20',
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               )}
@@ -164,8 +164,8 @@ export default function Skills() {
             >
               {/* Category Header */}
               <div className="flex items-center gap-2 mb-4">
-                <category.icon className="w-4 h-4 text-muted-foreground" />
-                <h3 className="text-sm font-semibold text-foreground">
+                <category.icon className="w-5 h-5 text-muted-foreground" />
+                <h3 className="text-base font-semibold text-foreground">
                   {category.name}
                 </h3>
               </div>
@@ -178,11 +178,11 @@ export default function Skills() {
                       <span className="text-xs text-foreground">
                         {skill.name}
                       </span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-xs text-muted-foreground min-w-[44px] text-right">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full bg-primary transition-all duration-1000 ease-out"
                         style={{
@@ -212,14 +212,14 @@ export default function Skills() {
               <GitBranch className="w-4 h-4" />
               Professional Skills
             </h3>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {softSkills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="flex items-center gap-2 p-3 rounded border border-border bg-secondary/20 hover:bg-secondary transition-colors"
+                  className="flex items-center gap-3 p-4 min-h-[56px] rounded border border-border bg-secondary/20 hover:bg-secondary transition-colors"
                 >
-                  <skill.icon className="w-3.5 h-3.5 text-muted-foreground" />
-                  <span className="text-xs text-foreground">{skill.name}</span>
+                  <skill.icon className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm text-foreground">{skill.name}</span>
                 </div>
               ))}
             </div>
